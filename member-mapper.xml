@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member"> <!-- 보통은 풀패키지명을 적는다 -->
+
+	<resultMap id="resultMember" type="Member"> <!-- mabatis-config.xml에 typeAliases로 경로 적어주었음 -->
+		<id property="id" column="ID" /> <!-- primary key는 id 태그에 넣어준다. -->
+		<result property="passwd" column="PASSWD" />
+		<result property="name" column="NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="gender" column="GENDER" />
+		<result property="age" column="AGE" />
+		<result property="phone" column="PHONE" />
+		<result property="address" column="ADDRESS" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+	</resultMap>
+
+	<!-- member table의 모든 데이터 select -->
+	<select id="selectMemberAll" resultMap="resultMember"> <!-- resultType="Member" -->
+		SELECT * FROM MEMBER
+	</select>
+</mapper>
