@@ -20,4 +20,24 @@ public class MemberDao {
 		List<Member> memberList = sqlSession.selectList("Member.selectMemberAll"); //namespace.가져올 쿼리
 		return memberList;
 	}
+	
+	public Member selectMember(String userid) throws Exception {
+		Member member = sqlSession.selectOne("Member.selectMember",userid); //xml에 자동으로 userid가 들어감
+		return member;
+	}
+	
+	public int deleteMember(Member member) throws Exception {
+		int cnt = sqlSession.delete("Member.deleteMember", member);
+		return cnt;
+	}
+	
+	public int insertMember(Member member) throws Exception{
+		int cnt = sqlSession.insert("Member.insertMember", member);
+		return cnt;
+	}
+	
+	public int updateMember(Member member) throws Exception{
+		int cnt = sqlSession.update("Member.updateMember", member);
+		return cnt;
+	}
 }

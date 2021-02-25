@@ -19,4 +19,27 @@
 	<select id="selectMemberAll" resultMap="resultMember"> <!-- resultType="Member" -->
 		SELECT * FROM MEMBER
 	</select>
+	
+	<!-- member 하나만 가져오는 select -->
+	<select id="selectMember" parameterType="String" resultMap="resultMember"> 
+					<!-- 데이터가 하나만 있으면 파라미터 타입에 자료형만 써줘도 됨 -->
+					
+		SELECT * FROM MEMBER WHERE ID = #{userid} 
+		<!-- Mybatis에서 파라미터 값을 적을때는 #{} 형식으로  씀. 데이터가 하나일 때 명칭은 신경쓰지 않아도 된다.-->
+	</select>
+	
+	<!-- member insert -->
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO MEMBER VALUES(#{id}, #{passwd}, #{name}, #{email}, #{gender}, #{age}, #{phone}, #{address}, SYSDATE)
+	</insert>
+	
+	<!-- member update -->
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER SET PASSWD=#{passwd}, EMAIL=#{email}, PHONE=#{phone}, ADDRESS=#{address} WHERE ID = #{id}
+	</update>
+	
+	<!-- member delete -->
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>
 </mapper>
